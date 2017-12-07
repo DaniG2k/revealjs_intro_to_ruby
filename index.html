@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Learn Ruby</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/solarized.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +24,102 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!-- Section -->
+				<section>
+					<h1>Welcome to Learn Ruby!</h1>
+				</section>
+				<!-- Section -->
+				<section>
+					<h2>What is Ruby?</h2>
+					<p>Ruby is a dynamic, reflective, object-oriented, general-purpose programming language.</p>
+					<p>It was designed and developed in the mid '90s by Yukihiro "Matz" Matsumoto in Japan.</p>
+					<p>It became largely popular due to the web framework, Ruby on Rails, but Ruby can be used for essentially any purpose</p>
+				</section>
+				<!-- Section -->
+				<section>
+					<h2>Dynamic</h2>
+					<p>
+						Unlike compiled languages like C or Java, Ruby code evaluates at <strong>runtime</strong>.
+					</p>
+				</section>
+				<section>
+					<h2>Dynamically typed</h2>
+				</section>
+				<!-- Section -->
+				<section>
+					<h2>Reflective</h2>
+				</section>
+				<!-- Section -->
+				<section>
+					<h2>Object Oriented</h2>
+				</section>
+				<!-- Section -->
+				<section><h2>Ruby as a calculator</h2></section>
+				<section><h2>Numbers in Ruby</h2></section>
+				<section><h2>Massive & tiny numbers</h2></section>
+				<section><h2>More operators</h2></section>
+				<section><h2>Strings</h2></section>
+				<section><h2>Interpolation</h2></section>
+				<section><h2>Object classes & introspection</h2></section>
+				<section><h2>Converting objects</h2></section>
+				<section><h2>Variables</h2></section>
+				<section><h2>Variable shortcuts</h2></section>
+				<section><h2>Constants</h2></section>
+				<section>
+					<h2>Good programming practices</h2>
+					<ol>
+						<li>
+							Pick good variable names
+						</li>
+						<ul>
+							<li>
+								'age' or 'vehicle', not 'a' or 'v'
+							</li>
+						</ul>
+						<li>Be descriptive</li>
+						<ul>
+							<li>
+								'student_age' or 'message_request'
+							</li>
+						</ul>
+						<li>
+							Whenever you have a value that should not change, always make it a constant.
+						</li>
+						<ul>
+							<li>
+								'PI' or 'DELTA'
+							</li>
+						</ul>
+					</ol>
+				</section>
+				<section><h2>Writing an .rb program</h2></section>
+				<section><h2>Loops</h2></section>
+				<section><h2>Counting upward</h2></section>
+				<section><h2>Counting backward</h2></section>
+				<section><h2>Ranges</h2></section>
+				<section><h2>Using each with an iterator</h2></section>
+				<section><h2>Getting user input</h2></section>
+				<section><h2>Conditionals</h2></section>
+				<section><h2>Arrays</h2></section>
+				<section><h2>Hashes</h2></section>
+				<section>
+					<h2>Methods</h2>
+					<p>In Ruby, the word <strong>method</strong> is used but the same construct may be called <strong>function</strong> in other programming languages.</p>
+				</section>
+				<section><h2>Classes</h2></section>
+				<section><h2>Inheritance</h2></section>
+				<section>
+					<h2>Dynamic dispatch</h2>
+					<p>
+						The process of selecting which implementation of a polymorphic operation (method or function) to call at run time.
+					</p>
+				</section>
+				<section>
+					<h2>Congratulations</h2>
+					<p>
+						You now have all the tools you need to create a fully-fledged program! 😀
+					</p>
+				</section>
 			</div>
 		</div>
 
@@ -37,6 +131,7 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				slideNumber: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
