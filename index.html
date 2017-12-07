@@ -31,7 +31,7 @@
 				<!-- Section -->
 				<section>
 					<h2>What is Ruby?</h2>
-					<p>Ruby is a dynamic, reflective, object-oriented, general-purpose programming language.</p>
+					<p>Ruby is a <strong>dynamic</strong>, <strong>reflective</strong>, <strong>object-oriented</strong>, general-purpose programming language.</p>
 					<p>It was designed and developed in the mid '90s by Yukihiro "Matz" Matsumoto in Japan.</p>
 					<p>It became largely popular due to the web framework, Ruby on Rails, but Ruby can be used for essentially any purpose</p>
 				</section>
@@ -59,6 +59,7 @@
 				<section><h2>Massive & tiny numbers</h2></section>
 				<section><h2>More operators</h2></section>
 				<section><h2>Strings</h2></section>
+				<section><h2>Symbols</h2></section>
 				<section><h2>Interpolation</h2></section>
 				<section><h2>Object classes & introspection</h2></section>
 				<section><h2>Converting objects</h2></section>
@@ -106,6 +107,34 @@
 					<h2>Methods</h2>
 					<p>In Ruby, the word <strong>method</strong> is used but the same construct may be called <strong>function</strong> in other programming languages.</p>
 				</section>
+				<section>
+					<h2>Syntactic sugar</h2>
+					<p>
+						Unlike some other programming languages, Ruby allows you to omit parentheses in method definitions.
+					</p>
+					<p>This is called <strong>syntactic sugar</strong>.</p>
+					<pre>
+						<code data-trim data-noescape>
+							def my_method(param1)
+							  # do stuff
+							end
+							# is the same as
+							def my_method param1
+							  # do stuff
+							end
+						</code>
+					</pre>
+				</section>
+				<section>
+					<p>Another example of syntactic sugar is being able to omit semicolons at the end of a line.</p>
+					<pre>
+						<code data-trim data-noescape>
+							def my_method(); end;
+							puts 'hello'; puts 'world'
+						</code>
+					</pre>
+					<p>You could potentially write an entire Ruby program on a single line 😏</p>
+				</section>
 				<section><h2>Classes</h2></section>
 				<section><h2>Inheritance</h2></section>
 				<section>
@@ -120,6 +149,7 @@
 						You now have all the tools you need to create a fully-fledged program! 😀
 					</p>
 				</section>
+				<section><h2>Thank you!</h2></section>
 			</div>
 		</div>
 
@@ -131,7 +161,9 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
-				slideNumber: true,
+				slideNumber: 'c/t',
+				width: 1024,
+				height: 768,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
