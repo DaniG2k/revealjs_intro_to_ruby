@@ -263,9 +263,60 @@
 						</code>
 					</pre>
 				</section>
-				<section><h2>Variables</h2></section>
-				<section><h2>Variable shortcuts</h2></section>
-				<section><h2>Constants</h2></section>
+				<section>
+					<h2>Variables</h2>
+					<p>
+						A variable is a name that Ruby associates with a particular object. It is a way to store information.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							city = "Busan"
+						</code>
+					</pre>
+          <p>
+						Ruby associates the string "Busan" with the name (variable) city.
+					</p>
+				</section>
+				<section>
+					<h2>Variable benefits</h2>
+					<p>
+						The good thing about variables is that it allows you to keep track of information more easily.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							num1 = 2 + 4 + 6 + 8
+							num1 = num1 / 5
+							num2 = 8 * 3
+							num2 = num2 - num1
+							=> 20
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Variable assignment shortcuts</h2>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							var += 2  # add 2 to var
+							var -= 3  # subtract 3 from var
+							var *= 6  # multiply var by 6
+							var /= 2  # divide var by 2
+							var **=3  # cube var
+							var %= 4  # var modulo 4
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Constants</h2>
+					<p>Constants are like variables, except that you are tellig Ruby that their value is supposed to remain fixed.</p>
+					<p>If you try to change the value of a constant, Ruby will give you a warning.</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							PI = 3.14159
+							PI += 2
+							=> warning: previous definition of PI was here
+						</code>
+					</pre>
+				</section>
 				<section>
 					<h2>Good programming practices</h2>
 					<ol>
@@ -293,7 +344,6 @@
 						</ul>
 					</ol>
 				</section>
-				<section><h2>Writing an .rb program</h2></section>
 				<section><h2>Loops</h2></section>
 				<section><h2>Counting upward</h2></section>
 				<section><h2>Counting backward</h2></section>
@@ -314,7 +364,7 @@
 					</p>
 					<p>This is called <strong>syntactic sugar</strong>.</p>
 					<pre>
-						<code data-trim data-noescape>
+						<code class="ruby" data-trim data-noescape>
 							def my_method(param1)
 							  # do stuff
 							end
@@ -326,11 +376,13 @@
 					</pre>
 				</section>
 				<section>
+					<h2>More sugar</h2>
 					<p>Another example of syntactic sugar is being able to omit semicolons at the end of a line.</p>
 					<pre>
-						<code data-trim data-noescape>
-							def my_method(); end;
-							puts 'hello'; puts 'world'
+						<code class="ruby" data-trim data-noescape>
+							def greeting(); return 'hello there!'; end
+							greeting
+							=> "hello there!"
 						</code>
 					</pre>
 					<p>You could potentially write an entire Ruby program on a single line 😏</p>
@@ -352,6 +404,7 @@
 						You now have all the tools you need to create a fully-fledged program! 😀
 					</p>
 				</section>
+				<section><h2>Writing an .rb program</h2></section>
 				<section><h2>Thank you!</h2></section>
 			</div>
 		</div>
