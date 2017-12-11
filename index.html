@@ -501,13 +501,30 @@
 					</p>
 					<pre>
 						<code class="ruby" data-trim data-noescape>
-							if client == 'Bob'
+							if client == 'Bob' # notice the '==' operator.
 							  client_likes_soju = true
 							elsif client == 'Sally'
 							  client_likes_soju = true
 							else
 							  client_likes_soju = false
 							end
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Conditional operators</h2>
+					<p>
+						Here is a list of some of the most common conditionals
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							== 	# equal to
+							!= 	# not equal to
+							> 	# greater than
+							< 	# less than
+							>= 	# greater than or equal to
+							<= 	# less than or equal to
 						</code>
 					</pre>
 				</section>
@@ -537,10 +554,10 @@
 						<code class="ruby" data-trim data-noescape>
 							def factorial(input_number)
 							  fac = 1
-								input_number.downto(1) do |i|
-								  fac *= i
-								end
-								fac # This line can also be written as 'return fac'
+							    input_number.downto(1) do |i|
+							    fac *= i
+							  end
+							  fac # This line can also be written as 'return fac'
 							end
 							factorial 5
 							=> 120
