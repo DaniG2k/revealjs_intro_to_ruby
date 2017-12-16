@@ -42,7 +42,10 @@
 					<p class="fragment fade-in">It was designed and developed in the mid '90s by Yukihiro "Matz" Matsumoto in Japan.</p>
 					<p class="fragment fade-in">It became largely popular due to the web framework, Ruby on Rails, but Ruby can be used for essentially any purpose</p>
 				</section>
-				<section data-background-image="../images/Yukihiro_Matsumoto.jpg" data-transition="slide-in fade-out">
+				<section
+					data-background-image="../images/Yukihiro_Matsumoto.jpg"
+					data-background-size="contain"
+					data-transition="slide-in fade-out">
 					<blockquote>
 						<p>
 							Throughout the development of the Ruby language, I've focused my energies on making programming faster and easier.
@@ -245,7 +248,6 @@
 					</pre>
 				</section>
 				<section data-background-image="../images/empty_wallet.jpg"
-					data-background-repeat="no-repeat"
 					data-background-size="contain"
 					data-transition="slide-in fade-out">
 				</section>
@@ -330,6 +332,8 @@
 							PI += 2
 							(irb):2: warning: already initialized constant PI
 							(irb):1: warning: previous definition of PI was here
+							# Ruby complains about PI already being initialized because
+							# this constant exists as Math::PI
 						</code>
 					</pre>
 				</section>
@@ -673,6 +677,33 @@
 						</code>
 					</pre>
 				</section>
+				<section data-transition="slide-in fade-out">
+					<h2>Getters and setters</h2>
+					<p>
+						In some programming languages, you need to explicitly define a class' getter and setter methods. Ruby has helpers that do this for you.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							class Car
+							  # The three helper methods:
+							  # attr_reader, attr_writer, attr_accessor
+							  attr_reader :type
+							  attr_accessor :color
+
+							  def initialize(color, type)
+							    @color = color # These two variables with an '@'
+							    @type = type   # are called instance variables.
+							                   # They stay around as long as the Car object stays alive.
+							  end
+							end
+
+							my_car = Car.new('red', 'ferrari')
+							my_car.type
+							my_car.color = 'blue'
+							my_car.color
+						</code>
+					</pre>
+				</section>
 				<section>
 					<h2>Class inheritance</h2>
 					<p>
@@ -719,33 +750,6 @@
 						</code>
 					</pre>
 				</section>
-				<section data-transition="slide-in fade-out">
-					<h2>Getters and setters</h2>
-					<p>
-						In some programming languages, you need to explicitly define a class' getter and setter methods. Ruby has helpers that do this for you.
-					</p>
-					<pre>
-						<code class="ruby" data-trim data-noescape>
-							class Car
-							  # The three helper methods:
-							  # attr_reader, attr_writer, attr_accessor
-							  attr_reader :type
-							  attr_accessor :color
-
-							  def initialize(color, type)
-							    @color = color # These two variables with an '@'
-							    @type = type   # are called instance variables.
-							                   # They stay around as long as the Car object stays alive.
-							  end
-							end
-
-							my_car = Car.new('red', 'ferrari')
-							my_car.type
-							my_car.color = 'blue'
-							my_car.color
-						</code>
-					</pre>
-				</section>
 				<!-- <section>
 					<h2>Dynamic dispatch</h2>
 					<p>
@@ -758,8 +762,284 @@
 						You now have all the tools you need to create a fully-fledged program! 😀
 					</p>
 				</section>
-				<section><h2>Writing an .rb program</h2></section>
-				<section><h2>Thank you!</h2></section>
+				<section data-background-image="../images/thumbs_up.gif"
+					data-background-size="contain"
+					data-transition="slide-in fade-out">
+				</section>
+				<section>
+					<h2>Putting it all together</h2>
+					<p>Let's get started on writing an address book!</p>
+					<p>
+						Create three empty files:
+						<ul>
+							<li>
+								contact.rb
+							</li>
+							<li>
+								address.rb
+							</li>
+							<li>
+								address_book.rb
+							</li>
+							<li>
+								phone_number.rb
+							</li>
+						</ul>
+					</p>
+				</section>
+				<section>
+					<h2>phone_number.rb</h2>
+					<pre class="ruby" data-trim data-noescape>
+						<code>
+class PhoneNumber
+  attr_accessor :kind, :number
+
+  def to_s
+    "#{kind}: #{number}"
+  end
+end
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>contact.rb</h2>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							require "./phone_number"
+							require "./address"
+
+							class Contact
+							  attr_accessor :first_name, :last_name
+							  attr_reader :phone_numbers, :addresses
+
+							  def initialize
+							    @phone_numbers = []
+							    @addresses = []
+							  end
+
+							  def add_phone_number(kind, number)
+							    phone_number = PhoneNumber.new
+							    phone_number.number = number
+							    phone_number.kind = kind
+							    phone_numbers.push(phone_number)
+							  end
+
+							  def add_address(street1, street2, city, state, postal_code)
+							    address = Address.new
+							    address.street_1 = street1
+							    address.street_2 = street2
+							    address.city = city
+							    address.state = state
+							    address.postal_code = postal_code
+							    addresses.push(address)
+							  end
+
+							  def first_last_name
+							    "#{first_name} #{last_name}"
+							  end
+
+							  def last_first_name
+							    "#{last_name} #{first_name}"
+							  end
+
+							  def phone_numbers
+							    puts "Phone Numbers:"
+							    phone_numbers.each do |phone_number|
+							      puts phone_number
+							    end
+							  end
+
+							  def addresses
+							    puts "Addresses:"
+							    addresses.each do |address|
+							      puts address.to_s('short')
+							    end
+							  end
+							end
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>address.rb</h2>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+class Address
+  attr_accessor :street_1, :street_2, :city, :state, :postal_code
+
+  def to_s(format = 'short')
+    address = ''
+    if format == 'short'
+      address += street_1
+      address += " " + street_2 if street_2
+    elsif format == 'long'
+      address += street_1 + "\n"
+      address += street_2 + "\n" if street_2
+      address += "#{city}, #{state} #{postal_code}"
+    end
+  end
+end
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>address_book.rb</h2>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+require "./contact"
+require "yaml"
+
+class AddressBook
+  attr_reader :contacts
+
+  def initialize
+    @contacts = []
+    open()
+  end
+
+  def run
+    loop do
+      puts "Address Book"
+      puts "a: Add New Contact"
+      puts "s: Search Contacts"
+      puts "p: Print Address Book"
+      puts "e: Exit"
+      print "Enter your choice: "
+      input = gets.chomp.downcase
+      if input == 'e'
+        save()
+        break
+      elsif input == 'p'
+        print_contact_list
+      elsif input == 'a'
+        add_contact
+      elsif input == 's'
+        print "Search term: "
+        search = gets.chomp
+        find_by_name(search)
+        find_by_phone_number(search)
+        find_by_address(search)
+      end
+    end
+  end
+
+  def open
+    if File.exist?("contacts.yml")
+      @contacts = YAML.load_file("contacts.yml")
+    end
+  end
+
+  def save
+    File.open("contacts.yml", "w") do |file|
+      file.write(contacts.to_yaml)
+    end
+  end
+
+  def add_contact
+    contact = Contact.new
+    print "First name: "
+    contact.first_name = gets.chomp
+    print "Last name: "
+    contact.last_name = gets.chomp
+    contacts.push(contact)
+
+    loop do
+      puts "Add a phone number or address? "
+      puts "p: Add phone number"
+      puts "a: Add address"
+      puts "Enter any other key to go back"
+      response = gets.chomp.downcase
+      if response == 'p'
+        phone = PhoneNumber.new
+        print "Phone number type (home, work, etc): "
+        phone.kind = gets.chomp
+        print "Number: "
+        phone.number = gets.chomp
+        contact.phone_numbers.push(phone)
+      elsif response == 'a'
+        address = Address.new
+        print "Address Kind (Home, Work, etc): "
+        address.kind = gets.chomp
+        print "Address line 1: "
+        address.street_1 = gets.chomp
+        print "Address line 2: "
+        address.street_2 = gets.chomp
+        print "City: "
+        address.city = gets.chomp
+        print "State: "
+        address.state = gets.chomp
+        print "Postal Code: "
+        address.postal_code = gets.chomp
+        contact.addresses.push(address)
+      else
+        print "\n"
+        break
+      end
+    end
+  end
+
+  def print_contact_list
+    puts "Contact List:" + "\n"
+    contacts.each do |contact|
+      puts contact.to_s('last_first')
+    end
+  end
+
+  def find_by_name(name)
+    results = []
+    search = name.downcase
+    contacts.each do |contact|
+      if contact.full_name.downcase.include?(search)
+        results.push(contact)
+      end
+    end
+    print_results("Name search results (#{search}):", results)
+  end
+
+  def find_by_phone_number(number)
+    results = []
+    search = number.gsub("-", "")
+    contacts.each do |contact|
+      contact.phone_numbers.each do |phone_number|
+        if phone_number.number.gsub("-", "").include?(search)
+          results.push(contact) unless results.include?(contact)
+        end
+      end
+    end
+    print_results("Phone search results (#{search}):", results)
+  end
+
+  def find_by_address(query)
+    results = []
+    search = query.downcase
+    contacts.each do |contact|
+      contact.addresses.each do |address|
+        if address.to_s('long').downcase.include?(search)
+          results.push(contact) unless results.include?(contact)
+        end
+       end
+    end
+    print_results("Address search results (#{search}):", results)
+  end
+
+  def print_results(search_label, results)
+    puts search_label
+    results.each do |contact|
+      puts "\n" + contact.to_s("full_name")
+      contact.print_phone_numbers
+      contact.print_addresses
+    end
+  end
+end
+
+address_book = AddressBook.new
+address_book.run
+</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Thank you!</h2>
+					<img width="50%" src="../svg/ruby_end_logo.svg" srcset="../svg/ruby_end_logo.svg" alt="Ruby end logo" class="no_border no_box_shadow">
+				</section>
 			</div>
 		</div>
 
