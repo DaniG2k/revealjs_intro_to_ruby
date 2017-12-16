@@ -59,7 +59,7 @@
 				<!-- Section -->
 				<section>
 					<h2>Dynamic</h2>
-					<p>A high-level programming languages which, at <strong>runtime</strong>, execute many common programming behaviors that static programming languages perform during <strong>compilation</strong>.</p>
+					<p>A high-level programming language which, at <strong>runtime</strong>, executes many common programming behaviors that static programming languages perform during <strong>compilation</strong>.</p>
 					<p>Unlike compiled languages like C or Java, Ruby code evaluates at <strong>runtime</strong>.</p>
 				</section>
 				<section>
@@ -98,7 +98,7 @@
 					</p>
 					<pre>
 						<code class="ruby" data-trim data-noescape>
-							puts "daniele".upcase
+							puts "Ruby intro meetup".upcase
 
 							3.times do
 							  puts "Hello world!"
@@ -165,7 +165,7 @@
 					<pre>
 						<code class="ruby" data-trim data-noescape>
 							0.000_000_000_000_321
-							=> 3.21e-13 # huh? Why is the result in scientific notation?
+							=> 3.21e-13 # Returned value is in scientific notation
 						</code>
 					</pre>
 					<p>Ruby gives you the option to write small numbers with <strong>underscores</strong> or in <strong>scientific notation</strong>.</p>
@@ -174,21 +174,14 @@
 					<h2>Try it out</h2>
 					<ol>
 						<li>
+							What happens when you combine floats and integers?
+						</li>
+
+						<li>
 							How many hours are in a year?
 						</li>
 						<li>
 							How many seconds old are you?
-						</li>
-						<li>
-							What is
-							<pre>
-								<code class="ruby" data-trim data-noescape>
-									3.24 + 12 * ((34 / 2) - 54) % 33.4 ** 3.4
-								</code>
-							</pre>
-						</li>
-						<li>
-							What happens when you combine floats and integers?
 						</li>
 					</ol>
 				</section>
@@ -242,11 +235,19 @@
 						<code class="ruby" data-trim data-noescape>
 							"I ate #{40 / 3 - 11} meals today"
 							=> "I ate 2 meals today"
+							#
+							# or
+							#
 							wallet_state = 'empty'
 							"My current wallet state is: #{wallet_state}"
 							=> "My current wallet state is: empty"
 						</code>
 					</pre>
+				</section>
+				<section data-background-image="../images/empty_wallet.jpg"
+					data-background-repeat="no-repeat"
+					data-background-size="contain"
+					data-transition="slide-in fade-out">
 				</section>
 				<section data-transition="zoom">
 					<h2>Symbols</h2>
@@ -260,6 +261,20 @@
 
 							x = "my_str" # a string containing my_str will be created twice,
 							y = "my_str" # and x and y will point to different instances.
+						</code>
+					</pre>
+				</section>
+				<section data-transition="zoom">
+					<h2>Symbol / String conversion</h2>
+					<p>
+						Despite being different, you can <strong>cast</strong> a symbol to a string and vice-versa. You can do this using the <strong>.to_sym</strong> and <strong>.to_s</strong> methods.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							'my_symbol'.to_sym
+							=> :my_symbol
+							:my_string.to_s
+							=> 'my_string'
 						</code>
 					</pre>
 				</section>
@@ -313,7 +328,8 @@
 						<code class="ruby" data-trim data-noescape>
 							PI = 3.14159
 							PI += 2
-							=> warning: previous definition of PI was here
+							(irb):2: warning: already initialized constant PI
+							(irb):1: warning: previous definition of PI was here
 						</code>
 					</pre>
 				</section>
@@ -495,18 +511,55 @@
 					</pre>
 				</section>
 				<section>
-					<h2>Adding conditions</h2>
+					<h2>Same-line conditionals</h2>
 					<p>
-						You can add conditions with 'elsif' statements
+						In Ruby it is possible to write conditional statements on the same line (no need for an 'end' keyword!)
 					</p>
 					<pre>
 						<code class="ruby" data-trim data-noescape>
-							if client == 'Bob' # notice the '==' operator.
-							  client_likes_soju = true
-							elsif client == 'Sally'
-							  client_likes_soju = true
-							else
-							  client_likes_soju = false
+							city = 'SEOUL'
+							puts "Welcome to the capital!" if city.downcase == 'seoul'
+							=> "Welcome to the capital!"
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Try it out</h2>
+					<p>
+						Write a small program that goes over this hash and prints out the value if it contains the word 'koala'.
+						To check for string inclusion use the method string1<strong>.include?(string2)</strong>
+						Note: pay attention to upper and lower-case letters!
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							animals = {
+							  dogs: 'German Shepherds and Golden Retrievers',
+							  pets: 'Koalas and lizards',
+							  cats: 'Munchkins and Siamese'
+							}
+						</code>
+					</pre>
+				</section>
+				<section data-background-image="../images/koala.jpg"
+					data-background-repeat="no-repeat"
+					data-background-size="contain"
+					data-transition="slide-in fade-out">
+				</section>
+				<section>
+					<h2>Adding conditions</h2>
+					<p>
+						You can add conditions with 'elsif' statements.
+						When writing conditions, it is important to pay attention to the order of operations.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							age = 21
+							if age > 5
+							  puts "Older than 5" # This will get printed!
+							elsif age > 10
+							  puts "Older than 10"
+							elsif age > 20
+							  puts "Older than 20"
 							end
 						</code>
 					</pre>
@@ -533,7 +586,7 @@
 					<h2>Methods</h2>
 					<p>In Ruby, the word <strong>method</strong> is used but the same construct may be called <strong>function</strong> in other programming languages.</p>
 					<p>
-						Ruby methods are used to bundle one or more repeatable statements into a single unit.
+						Methods are like recipies. They are used to bundle one or more repeatable statements into a single unit.
 						Method names should begin with a lowercase letter. If you begin a method name with an uppercase letter, Ruby might think that it is a constant and hence can parse the call incorrectly.
 					</p>
 					<pre>
@@ -554,7 +607,7 @@
 						<code class="ruby" data-trim data-noescape>
 							def factorial(input_number)
 							  fac = 1
-							    input_number.downto(1) do |i|
+							  input_number.downto(1) do |i|
 							    fac *= i
 							  end
 							  fac # This line can also be written as 'return fac'
@@ -666,15 +719,39 @@
 						</code>
 					</pre>
 				</section>
-				<section data-transition="slide-in fade-out"><h2>Object classes & introspection</h2></section>
-				<section><h2>Converting objects</h2></section>
-				<section><h2>Getters and setters</h2></section>
-				<section>
+				<section data-transition="slide-in fade-out">
+					<h2>Getters and setters</h2>
+					<p>
+						In some programming languages, you need to explicitly define a class' getter and setter methods. Ruby has helpers that do this for you.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							class Car
+							  # The three helper methods:
+							  # attr_reader, attr_writer, attr_accessor
+							  attr_reader :type
+							  attr_accessor :color
+
+							  def initialize(color, type)
+							    @color = color # These two variables with an '@'
+							    @type = type   # are called instance variables.
+							                   # They stay around as long as the Car object stays alive.
+							  end
+							end
+
+							my_car = Car.new('red', 'ferrari')
+							my_car.type
+							my_car.color = 'blue'
+							my_car.color
+						</code>
+					</pre>
+				</section>
+				<!-- <section>
 					<h2>Dynamic dispatch</h2>
 					<p>
 						The process of selecting which implementation of a polymorphic operation (method or function) to call at run time.
 					</p>
-				</section>
+				</section> -->
 				<section>
 					<h2>Congratulations</h2>
 					<p>
