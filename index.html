@@ -86,6 +86,10 @@
 					<p>Reflection is the ability of a computer program to <strong>examine</strong>, <strong>introspect</strong>, and <strong>modify</strong> its own structure and behavior at runtime.</p>
 					<pre>
 						<code class="ruby" data-trim data-noescape>
+							34.is_a?(Numeric)
+							=> true
+							[1, 2, 3].class
+							=> Array
 							"hello".methods
 							=> [:include?, :count, :sum, :next, :replace,
 							:downcase, :upcase, :empty?, :eql?,
@@ -101,10 +105,10 @@
 					</p>
 					<pre>
 						<code class="ruby" data-trim data-noescape>
-							puts "Ruby intro meetup".upcase
+							"Ruby intro meetup!".upcase
 
 							3.times do
-							  puts "Hello world!"
+							  puts "Hello world :)"
 							end
 						</code>
 					</pre>
@@ -188,6 +192,7 @@
 						</li>
 					</ol>
 				</section>
+
 				<section data-transition="zoom">
 					<h2>Strings</h2>
 					<p>String are sequences of characters which are "strung" together.</p>
@@ -258,8 +263,8 @@
 					</p>
 					<pre>
 						<code class="ruby" data-trim data-noescape>
-							x = :my_str # :my_str will only be created once,
-							y = :my_str # and x and y point to the same area of memory.
+							x = :my_sym # :my_str will only be created once,
+							y = :my_sym # and x and y point to the same area of memory.
 
 							x = "my_str" # a string containing my_str will be created twice,
 							y = "my_str" # and x and y will point to different instances.
@@ -386,6 +391,11 @@
 					</p>
 					<pre>
 						<code class="ruby" data-trim data-noescape>
+							loop do
+							  # this goes on infinitely until break is called
+							  break
+							end
+							# or
 							5.times do
 							  puts 'Ruby Meetup!'
 							end
@@ -416,6 +426,42 @@
 							=> ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
 							('a'..'i').to_a
 							=> ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Booleans</h2>
+					<p>
+						A boolean is a data type that returns either true or false.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							true
+							=> true
+							false
+							=> false
+							!true # ! is the negation operator
+							=> false
+							!false
+							= true
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Boolean operators</h2>
+					<p>
+						Here is a list of some of the most common boolean operators
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							&&  # AND (both A and B are true)
+							||  # OR (either A or B is true)
+							==  # equal to
+							!=  # not equal to
+							>   # greater than
+							<   # less than
+							>=  # greater than or equal to
+							<=  # less than or equal to
 						</code>
 					</pre>
 				</section>
@@ -482,7 +528,7 @@
 				<section>
 					<h2>More user input</h2>
 					<p>
-						Now let's write a mini program to compute the factorial of a given number.
+						Now let's write a mini program to compute the factorial (계승) of a given number.
 						The factorial is the product of all positive integers less than or equal to n.
 						For example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 					</p>
@@ -536,6 +582,19 @@
 					</pre>
 				</section>
 				<section>
+					<h2>Ternary operator</h2>
+					<p>
+						In addition to the previous same-line conditional, it is possible to use the <strong>ternary operator</strong>
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							cold = true
+							cold ? "It's freeeezing ☃️" : "Not bad 🙃"
+							=> "It's freeeezing ☃️"
+						</code>
+					</pre>
+				</section>
+				<section>
 					<h2>Try it out</h2>
 					<p>
 						Write a small program that goes over this hash and prints out the value if it contains the word 'koala'.
@@ -576,24 +635,6 @@
 						</code>
 					</pre>
 				</section>
-
-				<section>
-					<h2>Conditional operators</h2>
-					<p>
-						Here is a list of some of the most common conditionals
-					</p>
-					<pre>
-						<code class="ruby" data-trim data-noescape>
-							== 	# equal to
-							!= 	# not equal to
-							> 	# greater than
-							< 	# less than
-							>= 	# greater than or equal to
-							<= 	# less than or equal to
-						</code>
-					</pre>
-				</section>
-
 				<section>
 					<h2>Methods</h2>
 					<p>In Ruby, the word <strong>method</strong> is used but the same construct may be called <strong>function</strong> in other programming languages.</p>
@@ -645,6 +686,25 @@
 							def my_method param1, param2
 							  # do stuff
 							end
+						</code>
+					</pre>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>More sugar - blocks</h2>
+					<p>
+						A block is basically just code that you put inside do and end. That's it.
+						You can write the block in two ways, and both versions will do the exact same thing so it's up to you which one you choose.
+					</p>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+							[1, 2, 3].each do |n|
+							  puts "Number #{n}"
+							end
+							#
+							# is the same as
+							#
+							[1, 2, 3].each {|n| puts "Number #{n}"}
 						</code>
 					</pre>
 				</section>
@@ -703,6 +763,20 @@
 							    @type = type   # are called instance variables.
 							                   # They stay around as long as the Car object stays alive.
 							  end
+
+							  # Without the getter and setter methods above
+							  # we'd have had to write out
+							  # def type
+							  #   @type
+							  # end
+							  #
+							  # def color=(color)
+							  #   @color = color
+							  # end
+							  #
+							  # def color
+							  #   color
+							  # end
 							end
 
 							my_car = Car.new('red', 'ferrari')
@@ -720,13 +794,11 @@
 					<pre>
 						<code class="ruby" data-trim data-noescape>
 							class Car
+							  attr_reader :color
+
 							  def initialize(color)
 							    @color = color
 							    @kmh_to_mph_ratio = 1.609344
-							  end
-
-							  def color
-							    @color
 							  end
 							end
 
@@ -780,19 +852,14 @@
 					<p>
 						Create three empty files:
 						<ul>
-							<li>
-								contact.rb
-							</li>
-							<li>
-								address.rb
-							</li>
-							<li>
-								address_book.rb
-							</li>
-							<li>
-								phone_number.rb
-							</li>
+							<li>phone_number.rb</li>
+							<li>contact.rb</li>
+							<li>address.rb</li>
+							<li>address_book.rb</li>
 						</ul>
+					</p>
+					<p>
+						https://goo.gl/29EE9e
 					</p>
 				</section>
 				<section>
@@ -807,6 +874,28 @@ class PhoneNumber
   end
 end
 						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>address.rb</h2>
+					<pre>
+						<code class="ruby" data-trim data-noescape>
+class Address
+  attr_accessor :kind, :street_1, :street_2, :city, :state, :postal_code
+
+  def to_s(format = 'short')
+    address = "#{kind}: "
+    if format == 'short'
+      address += street_1
+      address += " #{street_2}" if street_2
+      address += ", #{city}, #{state} #{postal_code}"
+    elsif format == 'long'
+      address += street_1 + "\n"
+      address += street_2 + "\n" if street_2
+      address += "#{city}, #{state} #{postal_code}"
+    end
+  end
+end</code>
 					</pre>
 				</section>
 				<section>
@@ -905,29 +994,6 @@ class Contact
   def print_addresses
     puts "Addresses"
     addresses.each { |address| puts address.to_s('short') }
-  end
-end</code>
-					</pre>
-				</section>
-				<section>
-					<h2>address.rb</h2>
-					<pre>
-						<code class="ruby" data-trim data-noescape>
-class Address
-  attr_accessor :kind, :street_1, :street_2, :city, :state, :postal_code
-
-  def to_s(format = 'short')
-    address = ''
-    address += "#{kind}: "
-    if format == 'short'
-      address += street_1
-      address += " " + street_2 if street_2
-      address += ", #{city}, #{state} #{postal_code}"
-    elsif format == 'long'
-      address += street_1 + "\n"
-      address += street_2 + "\n" if !street_2.nil?
-      address += "#{city}, #{state} #{postal_code}"
-    end
   end
 end</code>
 					</pre>
